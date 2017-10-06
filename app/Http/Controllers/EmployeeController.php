@@ -5,10 +5,18 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use Auth;
-use App\Employee;
+use App\Models\Employee;
 
 class EmployeeController extends Controller
 {
+    
+   
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    
     /**
      * Display a listing of the resource.
      *
@@ -16,7 +24,7 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        //
+       return view ('employee.index');
     }
 
     /**
