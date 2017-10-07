@@ -27,6 +27,7 @@ return [
     */
 
     'env' => env('APP_ENV', 'production'),
+    'Twig' => 'TwigBridge\Facade\Twig',
 
     /*
     |--------------------------------------------------------------------------
@@ -179,6 +180,10 @@ return [
 
         // Laravel Debugbar
         Barryvdh\Debugbar\ServiceProvider::class,
+        
+        // Twig 
+        
+         TwigBridge\ServiceProvider::class,
     ],
 
     /*
@@ -228,6 +233,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
         'Debugbar' => Barryvdh\Debugbar\Facade::class,
+        'Twig' => TwigBridge\Facade\Twig::class,
 
     ],
 

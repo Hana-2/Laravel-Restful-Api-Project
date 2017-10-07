@@ -1,6 +1,6 @@
-@extends('layouts.app')
 
-@section('content')
+{% extends  "master.page.twig" %}
+{% block content %}
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
@@ -8,11 +8,15 @@
                 <div class="panel-heading">Employee</div>
 
                 <div class="panel-body">
-                    
+                    {% for employee in employees %}
+                            {{  employee.id  }}
+                            {{  employee.firstName  }}
+                            {{  employee.lastName }}
+                    {% endfor %}
  
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+{% endblock %}

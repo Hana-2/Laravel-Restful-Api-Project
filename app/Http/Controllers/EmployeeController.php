@@ -4,18 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use Auth;
-use App\Models\Employee;
+use App\Employee;
+use DB;
 
 class EmployeeController extends Controller
 {
     
-   
-    public function __construct()
-    {
-        $this->middleware('auth');
-    }
-
     
     /**
      * Display a listing of the resource.
@@ -24,7 +18,8 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-       return view ('employee.index');
+            $employees = DB::table("employees")->get();
+             return view('employee.index' , ['employees' => $employees]);
     }
 
     /**
@@ -56,7 +51,7 @@ class EmployeeController extends Controller
      */
     public function show($id)
     {
-        //
+  
     }
 
     /**
