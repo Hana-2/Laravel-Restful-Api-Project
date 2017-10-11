@@ -10,7 +10,8 @@ use DB;
 class EmployeeController extends Controller
 {
     
-    
+
+
     /**
      * Display a listing of the resource.
      *
@@ -18,29 +19,26 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-            $employees = DB::table("employees")->get();
-             return view('employee.index' , ['employees' => $employees]);
+        return view('employee.index');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
+ 
+    public function add(Request $request)
     {     
-
+          $employee = new Employee;
+          $this->validate($request, [
+              'firstName'=> 'required|min:3',
+              'lasrName'=> 'required|min:3',
+              'email' => 'unique:connection.users,email_address',
+              'phone'=>  'required|numeric|phone_number|size:11',
+              'address'=> 'required',
+              'jobTitle'=> 'required',
+              'salary'=> 'required|numeric',
+              'description' =>'required',
+              'startDate' => 'required|date_parse_from_format',
+              'endDate' => 'required|date_parse_from_format',
+              
+          ]);
     }
 
     /**
@@ -49,11 +47,12 @@ class EmployeeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-  
+       $employees = DB::table("employees")->get();
+             return view('employee.index', ['employees' => $employees]);
     }
-
+    
     /**
      * Show the form for editing the specified resource.
      *
